@@ -75,11 +75,13 @@ makedepends=(
 )
 source=(
   $url/releases/webkitgtk-$pkgver.tar.xz{,.asc}
+  use_shared_array_buffer.patch
 )
 sha256sums=('7de051a263668621d91a61a5eb1c3771d1a7cec900043d4afef06c326c16037f'
-            'SKIP')
-b2sums=('67b8f429af8b746a256ca36c335c33ab4fef92a4699b09b87c38e81d56e0da7b5fb20d9e0dbbc32016025e60ca2c6e44d9032c300bfbdc931f4097d5608bb62f'
-        'SKIP')
+            'SKIP'
+            '54388092309424fe907ed65a246e80c6f1ff51ff8694c767481ae9c9416bd812')
+b2sums=('67b8f429af8b746a256ca36c335c33ab4fef92a4699b09b87c38e81d56e0da7b5fb20d9e0dbbc32016025e60ca2c6e44d9032c300bfbdc931f4097d5608bb62f'        'SKIP'
+        'b7bb00b4df939602805c99a19917ede067134eb6747f911c4f8904579dee0378ecf39386970d770aa139c2e1c2a1e0c02e6b2ef0e0e9c3c48aa71a1159438dfd')
 validpgpkeys=(
   'D7FCF61CF9A2DEAB31D81BD3F3D322D0EC4582C3'  # Carlos Garcia Campos <cgarcia@igalia.com>
   '5AA3BC334FD7E3369E7C77B291C559DBE4C9123B'  # Adrián Pérez de Castro <aperez@igalia.com>
@@ -87,6 +89,7 @@ validpgpkeys=(
 
 prepare() {
   cd webkitgtk-$pkgver
+  patch --forward --strip=1 --input="${srcdir}/use_shared_array_buffer.patch"
 }
 
 build() {
@@ -109,7 +112,7 @@ build() {
   CXXFLAGS+=' -g1'
 
   cmake -S webkitgtk-$pkgver -B build -G Ninja "${cmake_options[@]}"
-  cmake --build build
+  cmake --build build -j8
 }
 
 package_webkit2gtk-4.1() {

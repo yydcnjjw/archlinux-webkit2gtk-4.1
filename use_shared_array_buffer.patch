@@ -1,0 +1,13 @@
+diff --git a/Source/JavaScriptCore/runtime/OptionsList.h b/Source/JavaScriptCore/runtime/OptionsList.h
+index 4ef8e7bf9c6a..a17a7cd4a762 100644
+--- a/Source/JavaScriptCore/runtime/OptionsList.h
++++ b/Source/JavaScriptCore/runtime/OptionsList.h
+@@ -560,7 +560,7 @@ bool canUseWebAssemblyFastMemory();
+     v(Bool, useImportAssertion, false, Normal, "Enable import assertion.") \
+     v(Bool, useIntlDurationFormat, true, Normal, "Expose the Intl DurationFormat.") \
+     v(Bool, useResizableArrayBuffer, true, Normal, "Expose ResizableArrayBuffer feature.") \
+-    v(Bool, useSharedArrayBuffer, false, Normal, nullptr) \
++    v(Bool, useSharedArrayBuffer, true, Normal, nullptr) \
+     v(Bool, useShadowRealm, false, Normal, "Expose the ShadowRealm object.") \
+     v(Bool, useStringWellFormed, true, Normal, "Expose the String well-formed methods.") \
+     v(Bool, useTemporal, false, Normal, "Expose the Temporal object.") \
